@@ -98,15 +98,10 @@ export default function ProjectDetails(props) {
               </Typography>
             </TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow sx={{ borderBottom: "0" }}>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
               <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                 <Box sx={{ margin: 1 }}>
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    component="div"
-                  ></Typography>
                   <Table size="small" aria-label="purchases">
                     <TableHead>
                       <TableRow>

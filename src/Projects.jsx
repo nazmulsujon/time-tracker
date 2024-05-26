@@ -13,23 +13,9 @@ import {
 } from "@mui/material";
 import ProjectDetails from "./ProjectDetails";
 
-export default function Projects() {
-  const [projects, setProjects] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setProjects(data.projects || []);
-      })
-      .catch((error) => {
-        console.error("Error fetching projects data:", error);
-        setProjects([]);
-      });
-  }, []);
-
+export default function Projects({ projects }) {
   return (
-    <Box>
+    <React.Fragment>
       {projects.map((project, index) => (
         <Box key={index} mb={4}>
           <TableContainer component={Paper}>
@@ -75,6 +61,6 @@ export default function Projects() {
           </TableContainer>
         </Box>
       ))}
-    </Box>
+    </React.Fragment>
   );
 }

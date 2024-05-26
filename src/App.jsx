@@ -9,6 +9,8 @@ import {
   FormControlLabel,
   Stack,
   ToggleButton,
+  ToggleButtonGroup,
+  Typography,
 } from "@mui/material";
 
 import Calendar from "react-calendar";
@@ -17,6 +19,7 @@ import ShowProjects from "./ShowProjects";
 import DailyNote, { getStorageData } from "./DailyNote";
 import Header from "./Header";
 import Projects from "./Projects";
+import Overview from "./Overview";
 
 function secondsToHMS(seconds) {
   var hours = Math.floor(seconds / 3600);
@@ -182,6 +185,12 @@ function App() {
   const [itemsOnDate, setItemsOnDate] = useState([]);
   const [openNote, setOpenNote] = useState(false);
   const [noteDate, setNoteDate] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [page, setPage] = useState("overview");
+
+  const handleChange = (event, newAlignment) => {
+    setPage(newAlignment);
+  };
 
   useEffect(() => {
     const setData = (data) => {
@@ -241,6 +250,18 @@ function App() {
     setOpenNote(true);
   };
 
+  useEffect(() => {
+    fetch("/data.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setProjects(data.projects || []);
+      })
+      .catch((error) => {
+        console.error("Error fetching projects data:", error);
+        setProjects([]);
+      });
+  }, []);
+
   return (
     <Stack
       direction={"column"}
@@ -251,6 +272,7 @@ function App() {
     >
       <Header />
       <DailyNote open={openNote} setOpen={setOpenNote} date={noteDate} />
+
       <Calendar
         onChange={onChange}
         value={value}
@@ -265,6 +287,7 @@ function App() {
           );
         }}
       />
+
       <Stack
         direction={"column"}
         maxWidth="800px"
@@ -287,8 +310,33 @@ function App() {
         />
         <ShowProjects itemsOnDate={itemsOnDate} time={value.getTime()} />
       </Stack>
+
+      <ToggleButtonGroup
+        color="primary"
+        value={page}
+        exclusive
+        onChange={handleChange}
+        aria-label="Platform"
+      >
+        <ToggleButton value="overview" size="small">
+          Project Overview
+        </ToggleButton>
+        <ToggleButton value="details" size="small">
+          Project Details
+        </ToggleButton>
+      </ToggleButtonGroup>
+
       <Box width="70%">
-        <Projects />
+        {page === "overview" && <Overview projects={projects} />}
+        {page === "details" && <Projects projects={projects} />}
+        {projects.length === 0 && (
+          <Typography
+            variant="div"
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            No data found
+          </Typography>
+        )}
       </Box>
     </Stack>
   );

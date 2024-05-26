@@ -226,6 +226,38 @@
           ],
           "time": 573,
           "url": "www.fb.com"
+        },
+        {
+          "dailyTime": {
+            "1710266400000": 10
+          },
+          "subdomains": [
+            {
+              "isBilled": true,
+              "path": "/tracker.html",
+              "time": 5
+            },
+            {
+              "isBilled": false,
+              "lastUpdate": 1710281553312,
+              "path": "/search",
+              "time": 29
+            },
+            {
+              "isBilled": false,
+              "lastUpdate": 1710276695649,
+              "path": "/webhp",
+              "time": 21
+            },
+            {
+              "isBilled": false,
+              "lastUpdate": 1710280600511,
+              "path": "/",
+              "time": 27
+            }
+          ],
+          "time": 573,
+          "url": "chatgpt.com"
         }
       ]
     },
@@ -264,7 +296,7 @@
             }
           ],
           "time": 573,
-          "url": "www.google.com"
+          "url": "www.twitter.com"
         },
         {
           "dailyTime": {
@@ -296,7 +328,39 @@
             }
           ],
           "time": 573,
-          "url": "www.fb.com"
+          "url": "www.netflix.com"
+        },
+        {
+          "dailyTime": {
+            "1710266400000": 10
+          },
+          "subdomains": [
+            {
+              "isBilled": true,
+              "path": "/tracker.html",
+              "time": 5
+            },
+            {
+              "isBilled": false,
+              "lastUpdate": 1710281553312,
+              "path": "/search",
+              "time": 29
+            },
+            {
+              "isBilled": false,
+              "lastUpdate": 1710276695649,
+              "path": "/webhp",
+              "time": 21
+            },
+            {
+              "isBilled": false,
+              "lastUpdate": 1710280600511,
+              "path": "/",
+              "time": 27
+            }
+          ],
+          "time": 573,
+          "url": "meet.google.com"
         }
       ]
     }
